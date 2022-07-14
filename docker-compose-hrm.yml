@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  HRM:
+    image: troontech/troon-hrm:HRM-Main
+    container_name: HRM-Main
+    hostname: 10.99.0.2
+    env_file:
+      - .env
+    ports:
+            - "5001:80"
+    volumes:
+      - '/root/HRM/data:/var/www/hrm/public/uploads'
+      #- '/root/HRM/data-storage:/var/www/hrm/storage'
+
+    networks:
+      Private-Live:
+        ipv4_address: 10.99.0.2
+    restart: on-failure
+
+networks:
+  Private-Live:
+    driver: bridge
+    ipam:
+     config:
+       - subnet: 10.99.0.0/16

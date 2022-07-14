@@ -1,0 +1,39 @@
+<?php
+
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class CreateResignationsTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('resignations', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->integer('employee_id');
+            $table->date('notice_date');
+            $table->date('resignation_date');
+            $table->string('description');
+            $table->string('exit_interview')->nullable();
+            $table->string('disabledAccount')->nullable();
+            $table->string('resignationDocument')->nullable();
+            $table->integer('created_by');
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('resignations');
+    }
+}
